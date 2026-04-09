@@ -4,12 +4,10 @@ let db;
 
 const connetDB = async () => {
   try {
-    db = await mysql.createConnection({
-      host: process.env.HOST,
-      user: process.env.USER,
-      password: process.env.PASSWORD,
-      database: process.env.NAME
-    });
+     db = await mysql.createConnection({
+       uri: process.env.DATABASE_URL,
+       ssl: { rejectUnauthorized: true },
+   });
 
     console.log("MySQL Connected Successfully");
     //console.log( await db.execute("show databases"));
